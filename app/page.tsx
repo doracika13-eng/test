@@ -1,5 +1,6 @@
-import { Hero } from "@/components/hero/Hero";
-import { Craftsmanship, DetailStrip, FeaturedCollections, Introduction, Spotlight, Statement } from "@/components/home/Sections";
+import { Story } from "@/components/hero/Story";
+import { CollectionsPanel } from "@/components/home/CollectionsPanel";
+import { Craftsmanship, DetailStrip, Spotlight, Statement } from "@/components/home/Sections";
 import { EarlyAccessForm } from "@/components/home/EarlyAccess";
 import { Instagram } from "@/components/home/Instagram";
 import { SplitLines } from "@/components/ui/SplitLines";
@@ -8,16 +9,15 @@ import { site } from "@/lib/site";
 
 export default async function Home() {
   const [products, collections] = await Promise.all([getProducts(), getCollections()]);
-  // Showroom: one panel per colourway that has both a front and a back view
-  const showroom = products.flatMap((p) =>
-    p.colorways.flatMap((c) => {
-      const front = c.images.find((i) => i.view === "Front");
-      const back = c.images.find((i) => i.view === "Back");
-      return front && back
-        ? [{ front: front.src, back: back.src, title: p.title.split(" / ").length > 1 ? c.name.split(" — ")[0] : p.title, label: c.name.split(" — ").pop() ?? c.name, code: p.code, href: `/shop/${p.handle}?colour=${c.id}` }]
-        : [];
-    }),
+  // Tunnel: every concept image except the arrival piece (Lumen front); front/back views become arches
+  const tunnel = products.flatMap((p) =>
+    p.colorways.flatMap((c) =>
+      c.images
+        .filter((im) => im.src !== "/images/products/ess-l01-front.jpg")
+        .map((im) => ({ src: im.src, alt: im.alt, title: p.title, label: c.name, collection: p.collection, href: `/shop/${p.handle}`, hero: im.view === "Front" || im.view === "Back" })),
+    ),
   );
+  const counts = Object.fromEntries(collections.map((c) => [c.slug, products.filter((p) => p.collection === c.slug).length]));
   const spotlight = products.find((p) => p.handle === "eclat-desir-ombre") ?? products[0];
 
   const jsonLd = {
@@ -33,9 +33,8 @@ export default async function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Hero items={showroom} />
-      <Introduction />
-      <FeaturedCollections collections={collections} products={products} />
+      <Story tunnel={tunnel} />
+      <CollectionsPanel collections={collections} counts={counts} />
       {spotlight && <Spotlight product={spotlight} />}
       <DetailStrip
         images={[

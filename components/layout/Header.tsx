@@ -17,14 +17,18 @@ export function Header({ searchIndex }: { searchIndex: SearchItem[] }) {
   const [menu, setMenu] = useState(false);
 
   // Pages whose first section is dark → header starts in light ink.
+  const [inStory, setInStory] = useState(false);
   const overDark = pathname === "/" || pathname === "/about";
-  const solid = scrolled || !overDark;
+  // On the home page the header stays transparent while the pinned story is on screen.
+  const solid = (scrolled && !inStory) || !overDark;
 
   useEffect(() => {
     let last = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 40);
+      const story = document.getElementById("story");
+      setInStory(!!story && story.getBoundingClientRect().bottom > 80);
       setHidden(y > 400 && y > last + 4 ? true : y < last - 4 ? false : (h) => h);
       last = y;
     };
