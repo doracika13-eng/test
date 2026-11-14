@@ -13,7 +13,8 @@ npm run build && npm start
 
 ## Structure
 - `app/` — pages: home, `/shop`, `/shop/[handle]`, `/collections`, `/collections/[slug]`, `/about`, `/contact`, `/legal/*`, API routes, sitemap, robots, OG image.
-- `components/hero/hoodieScene.ts` — procedural 3D hoodie study (placeholder form, **not** a DAMI product model). Falls back to an image on low-end devices / no WebGL. Replace with a GLB via GLTFLoader when a real model exists.
+- `components/hero/Story.tsx` + `tunnelScene.ts` — pinned scroll story on the homepage: Three.js tunnel of concept images, word-by-word reveals, hotspots, specification card.
+- `components/runway/Runway.tsx` + `content/runway.ts` — "Featured Collection" runway: 3D ring of looks (desktop) / walking line (phones), autoplay ticks, drag/swipe, "View look" popup with pins linked to the "In this look" panel. Panel data comes from the Tech Pack artwork tables. Cut-outs are generated with `python3 scripts/make_runway_cutouts.py` (needs `pip install "rembg[cpu]"`).
 - `content/catalog.json` — local catalogue (preview mode). Edit text, colourways and images here without touching components.
 - `lib/commerce/` — data layer. Uses Shopify Storefront API automatically when `SHOPIFY_STORE_DOMAIN` + `SHOPIFY_STOREFRONT_ACCESS_TOKEN` are set; otherwise the local catalogue.
 - `public/images/products/` — crops of the AI concept boards from the Sample Order Brief / Tech Pack (`npm run images` regenerates them from `references/`).

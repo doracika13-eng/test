@@ -5,7 +5,6 @@ import { CartProvider } from "@/components/cart/CartProvider";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Cursor } from "@/components/layout/Cursor";
 import { Motion } from "@/components/layout/Motion";
 import { commerceLive, getProducts } from "@/lib/commerce";
 import { site } from "@/lib/site";
@@ -61,7 +60,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Footer />
           <CartDrawer live={commerceLive} />
         </CartProvider>
-        <Cursor />
         <Motion />
       </body>
     </html>
