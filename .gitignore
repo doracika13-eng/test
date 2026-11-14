@@ -10,3 +10,4 @@ next-env.d.ts
 npm-debug.log*
 /test-results
 /scratch
+.netlify
