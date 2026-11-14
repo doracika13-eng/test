@@ -2,50 +2,37 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import type { HoodieScene, View } from "./hoodieScene";
+import type { Showroom, ShowroomItem } from "./showroomScene";
 import { Arrow } from "@/components/ui/Arrow";
-
-const SWATCHES = [
-  { id: "bone", label: "Bone", hex: "#EEE2CF" },
-  { id: "bordeaux", label: "Bordeaux", hex: "#581422" },
-  { id: "black", label: "Black", hex: "#161616" },
-  { id: "charcoal", label: "Charcoal", hex: "#393838" },
-];
 
 type Mode = "pending" | "3d" | "fallback";
 
-function canRun3D(): { ok: boolean; quality: "high" | "medium" } {
+function canRunWebGL(): boolean {
   try {
     const c = document.createElement("canvas");
-    const gl = c.getContext("webgl2") || c.getContext("webgl");
-    if (!gl) return { ok: false, quality: "medium" };
+    if (!c.getContext("webgl2")) return false;
   } catch {
-    return { ok: false, quality: "medium" };
+    return false;
   }
   const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
-  if (nav.connection?.saveData) return { ok: false, quality: "medium" };
-  const cores = nav.hardwareConcurrency || 4;
-  const mem = nav.deviceMemory ?? 8;
-  const touch = window.matchMedia("(pointer: coarse)").matches;
-  if (cores <= 2 || mem <= 2) return { ok: false, quality: "medium" };
-  const quality = !touch && cores >= 8 && mem >= 8 ? "high" : "medium";
-  return { ok: true, quality };
+  if (nav.connection?.saveData) return false;
+  if ((nav.hardwareConcurrency || 4) <= 2 || (nav.deviceMemory ?? 8) <= 1) return false;
+  return true;
 }
 
-export function Hero() {
+export function Hero({ items }: { items: ShowroomItem[] }) {
   const root = useRef<HTMLElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
-  const sceneRef = useRef<HoodieScene | null>(null);
+  const scene = useRef<Showroom | null>(null);
+  const router = useRouter();
   const [mode, setMode] = useState<Mode>("pending");
   const [ready, setReady] = useState(false);
-  const [colour, setColour] = useState("bone");
-  const [view, setView] = useState<View>("front");
+  const [active, setActive] = useState(0);
 
-  // Boot the 3D scene after first paint, only on capable devices.
   useEffect(() => {
-    const { ok, quality } = canRun3D();
-    if (!ok) {
+    if (!canRunWebGL() || items.length < 3) {
       setMode("fallback");
       return;
     }
@@ -53,23 +40,28 @@ export function Hero() {
     let disposed = false;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const boot = () =>
-      import("./hoodieScene")
-        .then(({ createHoodieScene }) => {
+      import("./showroomScene")
+        .then(({ createShowroom }) => {
           if (disposed || !canvas.current) return;
-          sceneRef.current = createHoodieScene(canvas.current, { quality, reducedMotion, onReady: () => setReady(true) });
+          scene.current = createShowroom(canvas.current, {
+            items,
+            reducedMotion,
+            onActive: setActive,
+            onNavigate: (href) => router.push(href),
+            onReady: () => setReady(true),
+          });
         })
         .catch(() => setMode("fallback"));
-    const idle = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-    if (idle) idle(boot, { timeout: 1200 });
-    else setTimeout(boot, 200);
+    const t = setTimeout(boot, 60);
     return () => {
       disposed = true;
-      sceneRef.current?.dispose();
-      sceneRef.current = null;
+      clearTimeout(t);
+      scene.current?.dispose();
+      scene.current = null;
     };
-  }, []);
+  }, [items, router]);
 
-  // Scroll choreography: wordmark grows & fades, stage recedes.
+  // Intro + scroll choreography
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let ctx: { revert: () => void } | undefined;
@@ -79,15 +71,11 @@ export function Hero() {
       gsap.registerPlugin(ScrollTrigger);
       ctx = gsap.context(() => {
         const st = { trigger: root.current, start: "top top", end: "bottom top", scrub: true };
-        gsap.to("[data-hero-word]", { scale: 1.25, opacity: 0, ease: "none", scrollTrigger: st });
-        gsap.to("[data-hero-stage]", { yPercent: 14, opacity: 0.25, ease: "none", scrollTrigger: st });
-        gsap.to("[data-hero-copy]", { yPercent: -40, opacity: 0, ease: "none", scrollTrigger: { ...st, end: "60% top" } });
-        gsap.fromTo(
-          "[data-hero-in]",
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.4, ease: "expo.out", stagger: 0.12, delay: 0.25 },
-        );
-        gsap.fromTo("[data-hero-word] span", { yPercent: 100 }, { yPercent: 0, duration: 1.8, ease: "expo.out", stagger: 0.06 });
+        gsap.to("[data-hero-word]", { scale: 1.2, opacity: 0, ease: "none", scrollTrigger: st });
+        gsap.to("[data-hero-stage]", { yPercent: 12, scale: 0.94, opacity: 0.2, ease: "none", scrollTrigger: st });
+        gsap.to("[data-hero-copy]", { yPercent: -30, opacity: 0, ease: "none", scrollTrigger: { ...st, end: "55% top" } });
+        gsap.fromTo("[data-hero-in]", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4, ease: "expo.out", stagger: 0.1, delay: 0.35 });
+        gsap.fromTo("[data-hero-word] span", { yPercent: 105 }, { yPercent: 0, duration: 1.9, ease: "expo.out", stagger: 0.07 });
       }, root);
     });
     return () => {
@@ -96,22 +84,25 @@ export function Hero() {
     };
   }, []);
 
-  const pickColour = (id: string) => {
-    setColour(id);
-    sceneRef.current?.setColour(id);
-  };
-  const pickView = (v: View) => {
-    setView(v);
-    sceneRef.current?.setView(v);
-  };
-
+  const item = items[active];
   const show3d = mode === "3d";
 
   return (
-    <section ref={root} aria-label="DAMI — Beyond the ordinary" className="grain grain-light relative h-[100svh] min-h-[38rem] overflow-hidden bg-ink text-paper">
-      {/* Giant wordmark behind the garment */}
-      <div data-hero-word className="pointer-events-none absolute inset-x-0 top-[15%] z-0 flex justify-center will-change-transform md:top-[12%]" aria-hidden>
-        <p className="display flex overflow-hidden text-[34vw] leading-[0.8] tracking-[0.02em] text-paper/[0.06] md:text-[27vw]">
+    <section
+      ref={root}
+      aria-label="DAMI — Beyond the ordinary"
+      className="grain grain-light relative h-[100svh] min-h-[40rem] overflow-hidden bg-ink text-paper"
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") scene.current?.next();
+        if (e.key === "ArrowLeft") scene.current?.prev();
+      }}
+    >
+      {/* warm light pool */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_55%_at_58%_42%,rgba(216,199,168,0.13),rgba(88,20,34,0.06)_45%,transparent_75%)]" />
+
+      {/* giant wordmark */}
+      <div data-hero-word className="pointer-events-none absolute inset-x-0 top-[13%] flex justify-center will-change-transform" aria-hidden>
+        <p className="display flex overflow-hidden text-[34vw] leading-[0.8] tracking-[0.02em] text-paper/[0.05] md:text-[26vw]">
           {"DAMI".split("").map((l, i) => (
             <span key={i} className="inline-block">
               {l}
@@ -120,57 +111,40 @@ export function Hero() {
         </p>
       </div>
 
-      {/* Stage: 3D canvas or editorial fallback */}
-      <div data-hero-stage className="absolute inset-0 z-[1]">
-        {show3d && (
-          <div aria-hidden className="absolute left-1/2 top-[9%] h-[48%] w-[min(30rem,74vw)] -translate-x-1/2 md:top-[11%] md:h-[74%] lg:left-[59%]">
-            <div className="absolute inset-0 rounded-t-full border border-paper/[0.07] bg-[radial-gradient(ellipse_at_50%_38%,rgba(216,199,168,0.20),rgba(88,20,34,0.10)_45%,rgba(17,17,17,0)_75%)]" />
-            <div className="absolute inset-x-[7%] bottom-0 top-[5%] rounded-t-full border border-paper/[0.04]" />
-          </div>
-        )}
+      {/* stage */}
+      <div data-hero-stage className="absolute inset-0 will-change-transform">
         {show3d && (
           <canvas
             ref={canvas}
-            className={`h-full w-full touch-pan-y transition-opacity duration-[1600ms] ${ready ? "opacity-100" : "opacity-0"}`}
-            aria-label="Interactive 3D hoodie study. Drag horizontally to rotate."
+            className={`h-full w-full cursor-grab touch-pan-y transition-opacity duration-[1800ms] ease-[var(--ease-silk)] active:cursor-grabbing ${ready ? "opacity-100" : "opacity-0"}`}
+            aria-label="Showroom carousel of DAMI concept pieces. Drag to browse, use the arrows below, or click the front piece to open it."
             role="img"
             data-cursor="Drag"
           />
         )}
-        {(!show3d || !ready) && (
-          <div className={`absolute inset-0 flex items-end justify-center pb-[22svh] md:items-center md:pb-0 ${show3d ? "transition-opacity duration-1000" : ""}`}>
-            <div className="relative aspect-[3/4] h-[52svh] max-h-[40rem] overflow-hidden rounded-t-full border border-paper/10 md:h-[64svh]">
-              <Image
-                src="/images/products/cfm-k01-front.jpg"
-                alt="Concept reference: Bordeaux Kiss hoodie in bone"
-                fill
-                priority
-                sizes="(min-width: 768px) 40vw, 80vw"
-                className="object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+        {(mode === "fallback" || (show3d && !ready)) && (
+          <div className={`absolute inset-0 flex justify-center pt-[16svh] md:items-center md:pt-0 lg:pl-[18%] ${show3d ? "animate-pulse" : ""}`}>
+            <div className="relative aspect-[2/3] h-[46svh] overflow-hidden rounded-t-full border border-champagne/30 md:h-[62svh]">
+              <Image src={items[0]?.front ?? "/images/products/cfm-k01-front.jpg"} alt={items[0] ? `Concept reference: ${items[0].title}` : ""} fill priority sizes="(min-width: 768px) 40vw, 70vw" className="object-cover object-top" />
             </div>
           </div>
         )}
       </div>
 
-      {/* Legibility veil under the copy on small screens */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[55%] bg-gradient-to-t from-ink via-ink/85 to-transparent md:hidden" />
+      {/* veil for legibility on phones */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[50%] bg-gradient-to-t from-ink via-ink/80 to-transparent md:h-[35%] md:via-ink/40" />
 
-      {/* Copy */}
+      {/* copy */}
       <div className="pointer-events-none relative z-10 flex h-full flex-col justify-end">
-        <div className="gutter mx-auto grid w-full max-w-[120rem] items-end gap-5 pb-8 md:grid-cols-12 md:gap-8 md:pb-12">
+        <div className="gutter mx-auto grid w-full max-w-[120rem] items-end gap-6 pb-8 md:grid-cols-12 md:pb-12">
           <div data-hero-copy className="pointer-events-auto md:col-span-6 lg:col-span-5">
             <p data-hero-in className="eyebrow mb-5 text-champagne">
               Aix-en-Provence<span className="hidden sm:inline"> — First collection in development</span>
             </p>
-            <h1 data-hero-in className="editorial text-[clamp(2.6rem,6.2vw,5.6rem)] leading-[0.95]">
+            <h1 data-hero-in className="editorial text-[clamp(2.6rem,6vw,5.6rem)] leading-[0.95]">
               Beyond the <em className="italic text-champagne">ordinary.</em>
             </h1>
-            <p data-hero-in className="mt-5 hidden max-w-sm text-sm leading-relaxed text-paper/70 sm:block">
-              Luxury aesthetics, streetwear culture and accessible pricing — designed as one language.
-            </p>
-            <div data-hero-in className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
+            <div data-hero-in className="mt-6 md:mt-8">
               <Link href="/collections" className="btn btn-light" data-cursor="Enter">
                 <span className="btn-label">Explore the collection</span>
                 <Arrow className="relative" />
@@ -178,51 +152,35 @@ export function Hero() {
             </div>
           </div>
 
-          {show3d && (
-            <div data-hero-in className="pointer-events-auto flex flex-col items-start gap-4 md:col-span-6 md:items-end lg:col-span-7">
-              <div className="flex items-center gap-2" role="radiogroup" aria-label="Colourway">
-                {SWATCHES.map((s) => (
-                  <button
-                    key={s.id}
-                    role="radio"
-                    aria-checked={colour === s.id}
-                    aria-label={s.label}
-                    onClick={() => pickColour(s.id)}
-                    className={`group flex h-11 items-center gap-2 border px-3 transition-colors duration-500 ${
-                      colour === s.id ? "border-paper/80" : "border-paper/15 hover:border-paper/40"
-                    }`}
-                  >
-                    <span className="h-3.5 w-3.5 rounded-full border border-paper/30" style={{ background: s.hex }} />
-                    <span className="eyebrow hidden !text-[0.58rem] lg:inline">{s.label}</span>
+          {item && (
+            <div data-hero-in className="pointer-events-auto flex items-end justify-between gap-6 md:col-span-6 md:flex-col md:items-end lg:col-span-7">
+              <Link href={item.href} className="group block md:text-right" aria-live="polite">
+                <span className="eyebrow block text-paper/45">
+                  <span className="tabular-nums">{String(active + 1).padStart(2, "0")}</span> / {String(items.length).padStart(2, "0")} — {item.code}
+                </span>
+                <span key={item.title + item.label} className="display mt-3 block text-[clamp(1.8rem,3.4vw,3.2rem)] uppercase tracking-[0.06em] [animation:page-in_.9s_var(--ease-silk)_both]">
+                  {item.title}
+                </span>
+                <span key={item.label} className="editorial mt-1 block text-lg italic text-champagne [animation:page-in_1.1s_var(--ease-silk)_both]">
+                  {item.label}
+                </span>
+              </Link>
+              {show3d && (
+                <div className="flex shrink-0 items-center gap-2">
+                  <button onClick={() => scene.current?.prev()} aria-label="Previous piece" className="grid h-11 w-11 place-items-center rounded-full border border-paper/25 transition-colors hover:border-paper hover:bg-paper hover:text-ink">
+                    <Arrow className="rotate-180" />
                   </button>
-                ))}
-              </div>
-              <div className="flex items-center gap-1" role="group" aria-label="Camera view">
-                {(["front", "back", "detail"] as View[]).map((v) => (
-                  <button
-                    key={v}
-                    onClick={() => pickView(v)}
-                    aria-pressed={view === v}
-                    className={`eyebrow h-10 px-3 !text-[0.6rem] transition-colors ${view === v ? "text-paper" : "text-paper/45 hover:text-paper/80"}`}
-                  >
-                    {v === "detail" ? "Closer" : v}
+                  <button onClick={() => scene.current?.next()} aria-label="Next piece" className="grid h-11 w-11 place-items-center rounded-full border border-paper/25 transition-colors hover:border-paper hover:bg-paper hover:text-ink">
+                    <Arrow />
                   </button>
-                ))}
-              </div>
-              <p className="eyebrow !text-[0.55rem] text-paper/40">3D study · placeholder form, not a DAMI product model</p>
+                </div>
+              )}
+              <p className="eyebrow hidden !text-[0.55rem] text-paper/35 md:block">
+                {show3d ? "Drag to browse · hover to turn · " : ""}AI concept references — not final product
+              </p>
             </div>
           )}
-          {mode === "fallback" && (
-            <p data-hero-in className="eyebrow !text-[0.55rem] text-paper/40 md:col-span-6 md:text-right lg:col-span-7">
-              AI concept reference — not final product
-            </p>
-          )}
         </div>
-      </div>
-
-      {/* Scroll cue */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 z-10 hidden h-16 w-px -translate-x-1/2 overflow-hidden md:block" aria-hidden>
-        <span className="scroll-cue absolute inset-0 bg-paper/60" />
       </div>
     </section>
   );

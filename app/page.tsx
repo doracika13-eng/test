@@ -8,6 +8,16 @@ import { site } from "@/lib/site";
 
 export default async function Home() {
   const [products, collections] = await Promise.all([getProducts(), getCollections()]);
+  // Showroom: one panel per colourway that has both a front and a back view
+  const showroom = products.flatMap((p) =>
+    p.colorways.flatMap((c) => {
+      const front = c.images.find((i) => i.view === "Front");
+      const back = c.images.find((i) => i.view === "Back");
+      return front && back
+        ? [{ front: front.src, back: back.src, title: p.title.split(" / ").length > 1 ? c.name.split(" — ")[0] : p.title, label: c.name.split(" — ").pop() ?? c.name, code: p.code, href: `/shop/${p.handle}?colour=${c.id}` }]
+        : [];
+    }),
+  );
   const spotlight = products.find((p) => p.handle === "eclat-desir-ombre") ?? products[0];
 
   const jsonLd = {
@@ -23,7 +33,7 @@ export default async function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Hero />
+      <Hero items={showroom} />
       <Introduction />
       <FeaturedCollections collections={collections} products={products} />
       {spotlight && <Spotlight product={spotlight} />}
