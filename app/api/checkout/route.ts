@@ -5,7 +5,7 @@ import { shopifyCheckout, shopifyEnabled } from "@/lib/commerce/shopify";
 export async function POST(req: Request) {
   if (!shopifyEnabled) {
     return NextResponse.json(
-      { message: "Checkout opens at launch. DAMI pieces are still in sample development, so no orders are being taken yet." },
+      { message: "Orders are not open yet." },
       { status: 503 },
     );
   }

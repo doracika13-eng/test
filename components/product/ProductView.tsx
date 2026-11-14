@@ -216,7 +216,7 @@ export function ProductView({ product, details, live }: { product: Product; deta
             </div>
             {colour.status === "under-review" && (
               <p className="mt-3 text-xs text-ink/55">
-                This colourway is under review and not yet approved.{showingOther ? ` Imagery shown in ${fallbackColour.name}.` : ""}
+                Colourway not yet approved.{showingOther ? ` Imagery shown in ${fallbackColour.name}.` : ""}
               </p>
             )}
           </fieldset>
@@ -270,7 +270,7 @@ export function ProductView({ product, details, live }: { product: Product; deta
           <p role="alert" className="mt-3 min-h-5 text-xs text-bordeaux">
             {error}
           </p>
-          {!live && <p className="text-xs leading-relaxed text-ink/55">Preview — DAMI is not taking orders yet. Pieces added to your bag are saved on this device until checkout opens at launch.</p>}
+          {!live && <p className="text-xs leading-relaxed text-ink/55">Orders are not open yet.</p>}
 
           {product.highlights.length > 0 && (
             <ul className="mt-10 space-y-2 border-t border-ink/15 pt-6">

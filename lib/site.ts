@@ -4,7 +4,8 @@ export const site = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),
   description:
     "DAMI is an independent fashion label exploring the intersection of contemporary streetwear, refined design and everyday luxury.",
-  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/",
+  // Empty until the account exists — no Instagram links are rendered while empty.
+  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
 };
 

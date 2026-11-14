@@ -18,24 +18,23 @@ const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-const VISION = [["Luxury", "aesthetics", "×"], ["Streetwear", "culture", "×"], ["Accessible", "pricing."]];
-const ACCT =
-  "DAMI is an independent label from Aix-en-Provence, exploring the intersection of contemporary streetwear, refined design and everyday luxury — pieces built to be lived in, not just looked at.";
+const VISION = [["Luxury", "Aesthetics", "×"], ["Streetwear", "Culture", "×"], ["Accessible", "Pricing."]];
+const ACCT = "DAMI is an independent fashion label exploring the intersection of contemporary streetwear, refined design, and everyday luxury.";
 
 // positions are % of the arch image box (ESS-L01 Lumen, front)
 const HOTSPOTS = [
-  { x: 50, y: 21, label: "Double-layer hood", value: "No drawcords" },
-  { x: 47, y: 43, label: "Chevron mark", value: "Deep Bordeaux" },
-  { x: 16, y: 76, label: "Sleeve signature", value: "Embroidered · both arms" },
-  { x: 55, y: 70, label: "Kangaroo pocket", value: "Bartacked corners" },
+  { x: 50, y: 21, label: "Structured double-layer hood", value: "No hood drawstrings" },
+  { x: 47, y: 43, label: "Double chevron", value: "LUMEN" },
+  { x: 16, y: 76, label: "Premium sleeve embroidery", value: "Both outer forearms" },
+  { x: 55, y: 70, label: "Reinforced kangaroo pocket", value: "Reinforced openings" },
 ];
 
 const FEATS = [
   "Three-end brushed-back fleece",
+  "Boxy unisex silhouette",
   "Structured double-layer hood",
-  "Embroidered signature, both sleeves",
-  "Soft-hand matte screen print",
-  "2×2 rib · 7.5 cm hem / 7 cm cuff",
+  "Premium sleeve embroidery",
+  "Soft-hand screen printing",
 ];
 
 function canRunWebGL() {
@@ -222,11 +221,11 @@ export function Story({ tunnel }: { tunnel: TunnelItem[] }) {
           className="invisible absolute left-1/2 top-[13vh] h-[var(--dh)] w-[min(calc(var(--dh)*0.7375),90vw)] -ml-[calc(min(calc(var(--dh)*0.7375),90vw)/2)] will-change-transform [--dh:74vh] max-md:top-[22vh] max-md:[--dh:52vh]"
         >
           <div className="absolute inset-0 overflow-hidden rounded-t-full border border-champagne/40">
-            <Image src="/images/products/ess-l01-front.jpg" alt="Concept reference: Lumen hoodie in white" fill sizes="(min-width: 768px) 40vw, 90vw" className="object-cover object-top" />
+            <Image src="/images/products/ess-l01-front.jpg" alt="LUMEN hoodie, white" fill sizes="(min-width: 768px) 40vw, 90vw" className="object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
           </div>
           <div className="absolute -inset-3 rounded-t-full border border-champagne/15" aria-hidden />
-          <span className="eyebrow absolute -bottom-7 left-0 !text-[0.55rem] text-paper/40">ESS-L01 · AI concept reference — not final product</span>
+          <span className="eyebrow absolute -bottom-7 left-0 !text-[0.55rem] text-paper/40">ESS-L01 — LUMEN</span>
           {HOTSPOTS.map((h, i) => (
             <button
               key={h.label}
@@ -257,7 +256,6 @@ export function Story({ tunnel }: { tunnel: TunnelItem[] }) {
                 </span>
               </span>
             </h1>
-            <p className="mono-s mx-auto mt-6 max-w-md text-paper/60">The first DAMI collection — in development</p>
           </div>
         </div>
 
@@ -270,16 +268,16 @@ export function Story({ tunnel }: { tunnel: TunnelItem[] }) {
             </span>
             <span className="chip">CFM-K01</span>
             <pre className="mono-s relative mt-3 font-sans leading-[1.65] text-paper/85">
-              {"LAT  43.5297° N\nLON   5.4474° E\nFLEECE  340 GSM*"}
+              {"BORDEAUX KISS\nCONFIRMED · BONE\n≈ 340 GSM FLEECE"}
               <span aria-hidden className="absolute -bottom-2.5 -left-2 -right-3.5 -top-2 border border-paper/50 [clip-path:polygon(0_0,14px_0,14px_1px,1px_1px,1px_14px,0_14px,0_calc(100%-14px),1px_calc(100%-14px),1px_calc(100%-1px),14px_calc(100%-1px),14px_100%,0_100%,0_0,100%_0,100%_14px,calc(100%-1px)_14px,calc(100%-1px)_1px,calc(100%-14px)_1px,calc(100%-14px)_0,100%_0,100%_100%,calc(100%-14px)_100%,calc(100%-14px)_calc(100%-1px),calc(100%-1px)_calc(100%-1px),calc(100%-1px)_calc(100%-14px),100%_calc(100%-14px),100%_100%)]" />
             </pre>
           </div>
           <p data-cap className="mono-s absolute bottom-[34px] left-[34px] border-l-2 border-champagne pl-4 leading-[1.75] text-paper/70 max-md:bottom-[70px] max-md:left-[18px] max-md:right-[18px]">
-            Luxury aesthetics.
+            Luxury Aesthetics
             <br />
-            Streetwear culture.
+            × Streetwear Culture
             <br />
-            Accessible pricing.
+            × Accessible Pricing
           </p>
           <div data-hint className="mono-s absolute bottom-9 right-[34px] flex items-center gap-3 text-paper/60 max-md:bottom-6 max-md:right-[18px]">
             <span className="grid h-5 w-5 place-items-center rounded-full border-[1.3px] border-current">
@@ -292,7 +290,6 @@ export function Story({ tunnel }: { tunnel: TunnelItem[] }) {
         {/* L2 — vision */}
         <div data-l2 className="story-layer invisible">
           <div className="absolute left-1/2 top-1/2 w-[min(860px,90vw)] -translate-x-1/2 -translate-y-1/2 text-center">
-            <span data-vmeta className="chip">The DAMI idea</span>
             <h2 className="display my-5 text-[clamp(38px,6vw,96px)] leading-[0.98] [text-shadow:0_2px_40px_rgba(0,0,0,0.6)]">
               {VISION.map((line, li) => (
                 <span key={li} className="block">
@@ -305,9 +302,9 @@ export function Story({ tunnel }: { tunnel: TunnelItem[] }) {
               ))}
             </h2>
             <p data-vmeta className="text-base leading-[1.45] text-paper/80">
-              An independent label from Aix-en-Provence,
+              Premium without being overpriced. Minimal without being plain.
               <br />
-              designed as one language.
+              Expressive without being excessive.
             </p>
           </div>
         </div>
@@ -326,19 +323,17 @@ export function Story({ tunnel }: { tunnel: TunnelItem[] }) {
         {/* L4 — atelier */}
         <div data-l4 className="story-layer invisible">
           <div data-cred className="absolute left-[34px] top-[13vh] max-w-[380px] max-md:left-[18px] max-md:top-[9vh] max-md:max-w-[80vw]">
-            <span className="chip">✕ Atelier · Sample size M</span>
+            <span className="chip">Development specifications</span>
             <h2 className="display mt-4 text-[clamp(30px,3.4vw,54px)] leading-[0.98]">
-              Considered, <em className="editorial italic text-champagne">down to the rib.</em>
+              Craftsmanship <em className="editorial italic text-champagne">&amp; Materials</em>
             </h2>
           </div>
 
           <div data-card className="absolute left-[34px] top-[44vh] w-[250px] rounded-[10px] border border-paper/20 bg-[rgba(57,56,56,0.38)] p-[18px] backdrop-blur-[16px] will-change-transform max-md:bottom-[6vh] max-md:left-[18px] max-md:top-auto max-md:w-[46vw] max-md:p-3">
             <h4 className="text-[15px] font-medium leading-tight max-md:text-[13px]">
               Main fleece
-              <br />
-              weight
             </h4>
-            <p className="mono-s mt-1 !text-[9.5px] opacity-70">Development target</p>
+            <p className="mono-s mt-1 !text-[9.5px] opacity-70">Development range</p>
             <p className="mt-3 flex items-baseline gap-1.5">
               <span data-num className="text-[46px] font-medium tracking-[-0.04em] tabular-nums max-md:text-[34px]">0</span>
               <span className="mono-s !text-[10px]">GSM</span>
@@ -370,7 +365,7 @@ export function Story({ tunnel }: { tunnel: TunnelItem[] }) {
           </div>
 
           <p data-note className="mono-s absolute bottom-14 left-1/2 -translate-x-1/2 whitespace-nowrap !text-[9.5px] text-paper/45 max-md:hidden">
-            * Development targets — confirmed only on approved pre-production samples
+            Development specifications — until physically verified and approved
           </p>
         </div>
 

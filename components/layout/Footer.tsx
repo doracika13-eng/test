@@ -4,7 +4,7 @@ import { Wordmark } from "@/components/ui/Wordmark";
 
 const cols = [
   {
-    title: "Maison",
+    title: "DAMI",
     links: [
       { href: "/shop", label: "Shop" },
       { href: "/collections", label: "Collections" },
@@ -13,7 +13,7 @@ const cols = [
     ],
   },
   {
-    title: "Client care",
+    title: "Information",
     links: [
       { href: "/legal/shipping-returns", label: "Shipping & Returns" },
       { href: "/legal/privacy", label: "Privacy Policy" },
@@ -29,11 +29,15 @@ export function Footer() {
       <div className="gutter mx-auto grid max-w-[120rem] gap-14 pb-10 pt-24 md:grid-cols-12 md:pt-32">
         <div className="md:col-span-5">
           <p className="editorial max-w-sm text-3xl leading-tight text-paper/90 md:text-4xl">
-            Luxury aesthetics. Streetwear culture. <em className="text-champagne">Within reach.</em>
+            Luxury Aesthetics × Streetwear Culture × <em className="text-champagne">Accessible Pricing.</em>
           </p>
-          <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="caps link-u mt-10 inline-block" data-cursor="Follow">
-            Instagram ↗
-          </a>
+          {site.instagram ? (
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="caps link-u mt-10 inline-block" data-cursor="Follow">
+              Instagram ↗
+            </a>
+          ) : (
+            <span className="caps mt-10 inline-block text-paper/40">Instagram · soon</span>
+          )}
         </div>
         {cols.map((c) => (
           <nav key={c.title} aria-label={c.title} className="md:col-span-3">

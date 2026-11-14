@@ -37,7 +37,7 @@ export default async function CollectionPage({ params }: Params) {
           <div className="md:col-span-7">
             <p className="eyebrow mb-6 opacity-60">{c.kicker}</p>
             <SplitLines as="h1" className="display text-[clamp(4rem,14vw,14rem)] uppercase" lines={[c.name]} />
-            <p className="editorial mt-6 text-2xl italic opacity-80 md:text-4xl">{c.tagline}</p>
+            {c.tagline && <p className="editorial mt-6 text-2xl italic opacity-80 md:text-4xl">{c.tagline}</p>}
             <p className="mt-6 max-w-md text-sm leading-relaxed opacity-75">{c.description}</p>
           </div>
           <div className="md:col-span-4 md:col-start-9">

@@ -1,34 +1,34 @@
 {
-  "_readme": "Local catalogue used while Shopify is not connected (preview mode). Edit this file to change text, colourways or images without touching components. Prices are intentionally null: no retail price has been approved. All images are AI-generated concept references from the DAMI Sample Order Brief v1 / Master Tech Pack v2 — replace with approved photography when available.",
+  "_readme": "Local catalogue used while Shopify is not connected. Text is taken from the DAMI brief and the Sample Order Brief / Master Tech Pack. Prices are null until approved. Images are concept references from the PDFs — replace with approved photography.",
   "collections": [
     {
       "slug": "confirmed",
       "name": "Confirmed",
       "kicker": "Collection 01",
-      "tagline": "Signed, sealed, Confirmed.",
-      "description": "A study in signature. Deep Bordeaux marks on bone, a red wordmark on black, and the DAMI hand embroidered along both forearms — the collection that puts the label's handwriting on the garment.",
+      "tagline": "",
+      "description": "CFM-K01 — Bordeaux Kiss / Confirmed. CFM-T01 — DAMI Confirmed.",
       "image": "/images/products/cfm-k01-back.jpg",
-      "imageAlt": "Concept reference: bone hoodie seen from the back with five Bordeaux lipstick marks",
+      "imageAlt": "bone hoodie seen from the back with five Bordeaux lipstick marks",
       "tone": "bone"
     },
     {
       "slug": "essentials",
       "name": "Essentials",
       "kicker": "Collection 02",
-      "tagline": "Éclat. Désir. Ombre. Lumen.",
-      "description": "Quiet pieces with a French vocabulary. One word on the chest, a Roman numeral and two drawn curves on the back — essentials built around restraint, colour and line.",
+      "tagline": "",
+      "description": "ESS-E01 — ÉCLAT / DÉSIR / OMBRE. ESS-L01 — LUMEN.",
       "image": "/images/products/ess-e01-bordeaux-front.jpg",
-      "imageAlt": "Concept reference: Bordeaux hoodie with DÉSIR on the chest",
+      "imageAlt": "Bordeaux hoodie with DÉSIR on the chest",
       "tone": "bordeaux"
     },
     {
       "slug": "i-edition",
       "name": "I Edition",
       "kicker": "Collection 03",
-      "tagline": "Sculpted by construction.",
-      "description": "The first piece designed around an engineered pattern: curved panels, rib inserts and a woven I tab at the hood. Form is the decoration.",
+      "tagline": "",
+      "description": "IED-001 — I Edition / Sculpted.",
       "image": "/images/products/ied-001-front.jpg",
-      "imageAlt": "Concept reference: bone hoodie with curved sculpted panel seams",
+      "imageAlt": "bone hoodie with curved sculpted panel seams",
       "tone": "charcoal"
     }
   ],
@@ -38,11 +38,18 @@
       "code": "CFM-K01",
       "title": "Bordeaux Kiss",
       "collection": "confirmed",
-      "subtitle": "Confirmed / Kiss — Bone",
-      "description": "A bone fleece hoodie carrying a quiet serif “Confirmed” on the chest and five distressed lipstick marks in deep Bordeaux across the back. The DAMI signature is embroidered on both outer forearms.",
+      "subtitle": "Confirmed — Bone",
+      "description": "Bone. The printed text reads Confirmed. Five distressed lipstick marks in deep Bordeaux. Both sleeve signatures are stitched embroidery. Soft, matte print.",
       "status": "in-development",
       "price": null,
-      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "colorways": [
         {
           "id": "bone",
@@ -50,20 +57,48 @@
           "hex": "#EEE2CF",
           "status": "reference",
           "images": [
-            { "src": "/images/products/cfm-k01-front.jpg", "alt": "Concept reference: Bordeaux Kiss hoodie in bone, front view", "view": "Front" },
-            { "src": "/images/products/cfm-k01-back.jpg", "alt": "Concept reference: Bordeaux Kiss hoodie, back view with five lipstick marks", "view": "Back" },
-            { "src": "/images/products/cfm-k01-detail-chest.jpg", "alt": "Concept reference: Confirmed chest print detail", "view": "Chest detail" },
-            { "src": "/images/products/cfm-k01-detail-sleeve.jpg", "alt": "Concept reference: DAMI signature on the forearm", "view": "Sleeve detail" },
-            { "src": "/images/products/cfm-k01-detail-label.jpg", "alt": "Concept reference: neck label inside the hood", "view": "Neck label" },
-            { "src": "/images/products/cfm-k01-detail-cuff.jpg", "alt": "Concept reference: rib cuff detail", "view": "Cuff" },
-            { "src": "/images/products/cfm-k01-detail-fabric.jpg", "alt": "Concept reference: fleece surface close-up", "view": "Fabric" }
+            {
+              "src": "/images/products/cfm-k01-front.jpg",
+              "alt": "Bordeaux Kiss hoodie in bone, front view",
+              "view": "Front"
+            },
+            {
+              "src": "/images/products/cfm-k01-back.jpg",
+              "alt": "Bordeaux Kiss hoodie, back view with five lipstick marks",
+              "view": "Back"
+            },
+            {
+              "src": "/images/products/cfm-k01-detail-chest.jpg",
+              "alt": "Confirmed chest print detail",
+              "view": "Chest detail"
+            },
+            {
+              "src": "/images/products/cfm-k01-detail-sleeve.jpg",
+              "alt": "DAMI signature on the forearm",
+              "view": "Sleeve detail"
+            },
+            {
+              "src": "/images/products/cfm-k01-detail-label.jpg",
+              "alt": "neck label inside the hood",
+              "view": "Neck label"
+            },
+            {
+              "src": "/images/products/cfm-k01-detail-cuff.jpg",
+              "alt": "rib cuff detail",
+              "view": "Cuff"
+            },
+            {
+              "src": "/images/products/cfm-k01-detail-fabric.jpg",
+              "alt": "fleece surface close-up",
+              "view": "Fabric"
+            }
           ]
         }
       ],
       "highlights": [
-        "Chest: “Confirmed” serif, Bordeaux",
-        "Back: five distressed lipstick marks + DAMI / Aix en Provence",
-        "Both sleeves: embroidered DAMI signature"
+        "Chest: “Confirmed”",
+        "Back: five lipstick marks, DAMI / Aix en Provence",
+        "Both sleeves: DAMI embroidery"
       ],
       "sizeChart": null
     },
@@ -72,11 +107,18 @@
       "code": "ESS-E01",
       "title": "Éclat / Désir / Ombre",
       "collection": "essentials",
-      "subtitle": "Essentials Français",
-      "description": "One silhouette, three words. ÉCLAT on bone, DÉSIR on Bordeaux, OMBRE on black — the chest word changes with the colour. On the back, a Roman numeral I between two bars and two symmetrical drawn curves.",
+      "subtitle": "Essentials",
+      "description": "ÉCLAT on Bone. DÉSIR on Bordeaux. OMBRE on Black. Roman numeral I centred on the back, with curved graphic lines.",
       "status": "in-development",
       "price": null,
-      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "colorways": [
         {
           "id": "bone",
@@ -84,9 +126,21 @@
           "hex": "#EEE2CF",
           "status": "reference",
           "images": [
-            { "src": "/images/products/ess-e01-bone-front.jpg", "alt": "Concept reference: ÉCLAT hoodie in bone, front view", "view": "Front" },
-            { "src": "/images/products/ess-e01-bone-back.jpg", "alt": "Concept reference: ÉCLAT hoodie, back view with Roman numeral I and curved lines", "view": "Back" },
-            { "src": "/images/products/ess-e01-detail-motif.jpg", "alt": "Concept reference: Roman numeral I back motif", "view": "Back motif" }
+            {
+              "src": "/images/products/ess-e01-bone-front.jpg",
+              "alt": "ÉCLAT hoodie in bone, front view",
+              "view": "Front"
+            },
+            {
+              "src": "/images/products/ess-e01-bone-back.jpg",
+              "alt": "ÉCLAT hoodie, back view with Roman numeral I and curved lines",
+              "view": "Back"
+            },
+            {
+              "src": "/images/products/ess-e01-detail-motif.jpg",
+              "alt": "Roman numeral I back motif",
+              "view": "Back motif"
+            }
           ]
         },
         {
@@ -95,10 +149,26 @@
           "hex": "#581422",
           "status": "under-review",
           "images": [
-            { "src": "/images/products/ess-e01-bordeaux-front.jpg", "alt": "Concept reference: DÉSIR hoodie in Bordeaux, front view", "view": "Front" },
-            { "src": "/images/products/ess-e01-bordeaux-back.jpg", "alt": "Concept reference: DÉSIR hoodie, back view", "view": "Back" },
-            { "src": "/images/products/ess-e01-detail-sleeve.jpg", "alt": "Concept reference: champagne DAMI signature on Bordeaux sleeve", "view": "Sleeve detail" },
-            { "src": "/images/products/ess-e01-detail-fabric.jpg", "alt": "Concept reference: Bordeaux fleece close-up", "view": "Fabric" }
+            {
+              "src": "/images/products/ess-e01-bordeaux-front.jpg",
+              "alt": "DÉSIR hoodie in Bordeaux, front view",
+              "view": "Front"
+            },
+            {
+              "src": "/images/products/ess-e01-bordeaux-back.jpg",
+              "alt": "DÉSIR hoodie, back view",
+              "view": "Back"
+            },
+            {
+              "src": "/images/products/ess-e01-detail-sleeve.jpg",
+              "alt": "champagne DAMI signature on Bordeaux sleeve",
+              "view": "Sleeve detail"
+            },
+            {
+              "src": "/images/products/ess-e01-detail-fabric.jpg",
+              "alt": "Bordeaux fleece close-up",
+              "view": "Fabric"
+            }
           ]
         },
         {
@@ -107,15 +177,23 @@
           "hex": "#161616",
           "status": "under-review",
           "images": [
-            { "src": "/images/products/ess-e01-black-front.jpg", "alt": "Concept reference: OMBRE hoodie in black, front view", "view": "Front" },
-            { "src": "/images/products/ess-e01-black-back.jpg", "alt": "Concept reference: OMBRE hoodie, back view", "view": "Back" }
+            {
+              "src": "/images/products/ess-e01-black-front.jpg",
+              "alt": "OMBRE hoodie in black, front view",
+              "view": "Front"
+            },
+            {
+              "src": "/images/products/ess-e01-black-back.jpg",
+              "alt": "OMBRE hoodie, back view",
+              "view": "Back"
+            }
           ]
         }
       ],
       "highlights": [
-        "Chest word changes with colour: ÉCLAT · DÉSIR · OMBRE",
-        "Back: Roman numeral I and two symmetrical drawn curves (printed motif)",
-        "Both sleeves: embroidered DAMI signature in contrast thread"
+        "Chest word by colour: ÉCLAT · DÉSIR · OMBRE",
+        "Back: Roman numeral I and curved lines",
+        "Both sleeves: DAMI embroidery"
       ],
       "sizeChart": null
     },
@@ -125,10 +203,17 @@
       "title": "Lumen",
       "collection": "essentials",
       "subtitle": "Essentials — White",
-      "description": "The brightest piece in the line. A double chevron above LUMEN at the chest, DAMI × ESSENTIALS across the shoulders, and long, graceful curves drawn down the back in deep Bordeaux.",
+      "description": "White / ivory. Double chevron and LUMEN on the front. DAMI × ESSENTIALS on the back, with long curved graphic lines.",
       "status": "in-development",
       "price": null,
-      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "colorways": [
         {
           "id": "white",
@@ -136,18 +221,38 @@
           "hex": "#F5F1E9",
           "status": "reference",
           "images": [
-            { "src": "/images/products/ess-l01-front.jpg", "alt": "Concept reference: Lumen hoodie in white, front view with double chevron", "view": "Front" },
-            { "src": "/images/products/ess-l01-back.jpg", "alt": "Concept reference: Lumen hoodie, back view with DAMI × ESSENTIALS", "view": "Back" },
-            { "src": "/images/products/ess-l01-detail-chevron.jpg", "alt": "Concept reference: double chevron detail", "view": "Chevron" },
-            { "src": "/images/products/ess-l01-detail-back.jpg", "alt": "Concept reference: DAMI × ESSENTIALS back detail", "view": "Back detail" },
-            { "src": "/images/products/ess-l01-detail-fabric.jpg", "alt": "Concept reference: white fleece close-up", "view": "Fabric" }
+            {
+              "src": "/images/products/ess-l01-front.jpg",
+              "alt": "Lumen hoodie in white, front view with double chevron",
+              "view": "Front"
+            },
+            {
+              "src": "/images/products/ess-l01-back.jpg",
+              "alt": "Lumen hoodie, back view with DAMI × ESSENTIALS",
+              "view": "Back"
+            },
+            {
+              "src": "/images/products/ess-l01-detail-chevron.jpg",
+              "alt": "double chevron detail",
+              "view": "Chevron"
+            },
+            {
+              "src": "/images/products/ess-l01-detail-back.jpg",
+              "alt": "DAMI × ESSENTIALS back detail",
+              "view": "Back detail"
+            },
+            {
+              "src": "/images/products/ess-l01-detail-fabric.jpg",
+              "alt": "white fleece close-up",
+              "view": "Fabric"
+            }
           ]
         }
       ],
       "highlights": [
-        "Chest: double-chevron mark above LUMEN",
-        "Back: DAMI × ESSENTIALS and long curved graphic lines",
-        "Alternate colourways shown on the reference board are not yet approved"
+        "Front: double chevron, LUMEN",
+        "Back: DAMI × ESSENTIALS",
+        "Both sleeves: DAMI embroidery"
       ],
       "sizeChart": null
     },
@@ -156,11 +261,18 @@
       "code": "IED-001",
       "title": "I Edition — Sculpted",
       "collection": "i-edition",
-      "subtitle": "The engineered hoodie",
-      "description": "Built from its own pattern rather than the common block: curved, princess-like panels front and back, optional rib side inserts and a soft woven I tab at the back of the hood. A small DAMI at the chest; everything else is construction.",
+      "subtitle": "I Edition",
+      "description": "Engineered panelled construction: curved construction seams and side rib inserts. Bone, Charcoal, Black.",
       "status": "in-development",
       "price": null,
-      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "colorways": [
         {
           "id": "bone",
@@ -168,21 +280,57 @@
           "hex": "#D9CBB4",
           "status": "reference",
           "images": [
-            { "src": "/images/products/ied-001-front.jpg", "alt": "Concept reference: I Edition hoodie in bone, front view with curved panels", "view": "Front" },
-            { "src": "/images/products/ied-001-back.jpg", "alt": "Concept reference: I Edition hoodie, back view", "view": "Back" },
-            { "src": "/images/products/ied-001-detail-shoulder.jpg", "alt": "Concept reference: curved shoulder seam", "view": "Shoulder seam" },
-            { "src": "/images/products/ied-001-detail-rib.jpg", "alt": "Concept reference: rib side insert", "view": "Rib insert" },
-            { "src": "/images/products/ied-001-detail-hood.jpg", "alt": "Concept reference: woven I tab on the hood", "view": "Hood tab" },
-            { "src": "/images/products/ied-001-detail-label.jpg", "alt": "Concept reference: I Edition neck label", "view": "Neck label" }
+            {
+              "src": "/images/products/ied-001-front.jpg",
+              "alt": "I Edition hoodie in bone, front view with curved panels",
+              "view": "Front"
+            },
+            {
+              "src": "/images/products/ied-001-back.jpg",
+              "alt": "I Edition hoodie, back view",
+              "view": "Back"
+            },
+            {
+              "src": "/images/products/ied-001-detail-shoulder.jpg",
+              "alt": "curved shoulder seam",
+              "view": "Shoulder seam"
+            },
+            {
+              "src": "/images/products/ied-001-detail-rib.jpg",
+              "alt": "rib side insert",
+              "view": "Rib insert"
+            },
+            {
+              "src": "/images/products/ied-001-detail-hood.jpg",
+              "alt": "woven I tab on the hood",
+              "view": "Hood tab"
+            },
+            {
+              "src": "/images/products/ied-001-detail-label.jpg",
+              "alt": "I Edition neck label",
+              "view": "Neck label"
+            }
           ]
         },
-        { "id": "charcoal", "name": "Charcoal", "hex": "#393838", "status": "under-review", "images": [] },
-        { "id": "black", "name": "Black", "hex": "#161616", "status": "under-review", "images": [] }
+        {
+          "id": "charcoal",
+          "name": "Charcoal",
+          "hex": "#393838",
+          "status": "under-review",
+          "images": []
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#161616",
+          "status": "under-review",
+          "images": []
+        }
       ],
       "highlights": [
-        "Separate engineered panel pattern",
-        "Woven I tab at the back of the hood",
-        "The metal cuff plaque seen in the reference is an optional concept, not pre-approved"
+        "Panelled construction",
+        "Curved seams, rib side inserts",
+        "Both sleeves: DAMI embroidery"
       ],
       "sizeChart": null
     },
@@ -192,10 +340,17 @@
       "title": "DAMI Confirmed",
       "collection": "confirmed",
       "subtitle": "Confirmed — Black",
-      "description": "Plain at the front, outspoken at the back: a large red DAMI wordmark, a handwritten CONFIRMED beneath it, two quick slashes and a small AIX EN PROVENCE. The signature is embroidered in red on both sleeves.",
+      "description": "Black. Plain front. The back reads DAMI, then handwritten CONFIRMED, two red slashes and AIX EN PROVENCE. Both sleeve signatures embroidered in red.",
       "status": "in-development",
       "price": null,
-      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "colorways": [
         {
           "id": "black",
@@ -203,31 +358,67 @@
           "hex": "#161616",
           "status": "reference",
           "images": [
-            { "src": "/images/products/cfm-t01-back.jpg", "alt": "Concept reference: DAMI Confirmed hoodie in black, back view with red wordmark", "view": "Back" },
-            { "src": "/images/products/cfm-t01-front.jpg", "alt": "Concept reference: DAMI Confirmed hoodie, plain front view", "view": "Front" },
-            { "src": "/images/products/cfm-t01-detail-print.jpg", "alt": "Concept reference: DAMI Confirmed back print close-up", "view": "Print detail" },
-            { "src": "/images/products/cfm-t01-detail-sleeve.jpg", "alt": "Concept reference: red DAMI signature near the cuff", "view": "Sleeve detail" },
-            { "src": "/images/products/cfm-t01-detail-label.jpg", "alt": "Concept reference: neck label", "view": "Neck label" },
-            { "src": "/images/products/cfm-t01-detail-fabric.jpg", "alt": "Concept reference: black fleece close-up", "view": "Fabric" }
+            {
+              "src": "/images/products/cfm-t01-back.jpg",
+              "alt": "DAMI Confirmed hoodie in black, back view with red wordmark",
+              "view": "Back"
+            },
+            {
+              "src": "/images/products/cfm-t01-front.jpg",
+              "alt": "DAMI Confirmed hoodie, plain front view",
+              "view": "Front"
+            },
+            {
+              "src": "/images/products/cfm-t01-detail-print.jpg",
+              "alt": "DAMI Confirmed back print close-up",
+              "view": "Print detail"
+            },
+            {
+              "src": "/images/products/cfm-t01-detail-sleeve.jpg",
+              "alt": "red DAMI signature near the cuff",
+              "view": "Sleeve detail"
+            },
+            {
+              "src": "/images/products/cfm-t01-detail-label.jpg",
+              "alt": "neck label",
+              "view": "Neck label"
+            },
+            {
+              "src": "/images/products/cfm-t01-detail-fabric.jpg",
+              "alt": "black fleece close-up",
+              "view": "Fabric"
+            }
           ]
         },
-        { "id": "bone", "name": "Bone", "hex": "#EEE2CF", "status": "under-review", "images": [] },
-        { "id": "charcoal", "name": "Charcoal", "hex": "#393838", "status": "under-review", "images": [] }
+        {
+          "id": "bone",
+          "name": "Bone",
+          "hex": "#EEE2CF",
+          "status": "under-review",
+          "images": []
+        },
+        {
+          "id": "charcoal",
+          "name": "Charcoal",
+          "hex": "#393838",
+          "status": "under-review",
+          "images": []
+        }
       ],
       "highlights": [
         "Front: plain",
-        "Back: DAMI, handwritten CONFIRMED, two red slashes, AIX EN PROVENCE",
-        "Both sleeves: embroidered DAMI signature in red"
+        "Back: DAMI, CONFIRMED, AIX EN PROVENCE",
+        "Both sleeves: red DAMI embroidery"
       ],
       "sizeChart": null
     }
   ],
   "sharedDetails": {
-    "materials": "Development target: three-end brushed-back fleece with a smooth matte face and a soft brushed interior, approximately 340 GSM (330–350 GSM trial range). 2×2 rib cuffs and hem. Final fibre composition will be confirmed by mill verification and printed on the care label — it is not stated here until verified.",
-    "fit": "Unisex, boxy and slightly shorter in the body — not cropped. Dropped shoulders and relaxed, gently tapered sleeves. Final measurements will be published once physical size samples are approved.",
-    "construction": "Structured double-layer hood with no drawcords or eyelets. Self-fabric kangaroo pocket with reinforced corners. DAMI signature machine-embroidered on both outer forearms; graphics in soft-hand matte screen print. These are development targets pending pre-production sample approval.",
-    "care": "Care instructions will be confirmed after wash testing on the approved sample and printed on the garment label.",
-    "shipping": "Shipping destinations, rates and delivery times will be published at launch.",
-    "returns": "Return and exchange conditions will be published at launch, in line with consumer law in each destination."
+    "materials": "Approximately 340 GSM main fleece, 330–350 GSM development range. Three-end brushed-back fleece. Smooth matte exterior, soft brushed interior. Development specification — until physically verified and approved.",
+    "fit": "Boxy unisex silhouette. Dropped shoulders. Sizes XS–XXL. Measurements will be published after the physical samples have been approved.",
+    "construction": "Structured double-layer hood. No hood drawstrings. Reinforced kangaroo pocket. Premium sleeve embroidery. Soft-hand screen printing.",
+    "care": "To be confirmed.",
+    "shipping": "To be confirmed.",
+    "returns": "To be confirmed."
   }
 }

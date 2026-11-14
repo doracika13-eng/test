@@ -31,7 +31,7 @@ export default async function CollectionsPage() {
                   <h2 className="display text-[clamp(3rem,8vw,8rem)] uppercase transition-[letter-spacing,color] duration-700 ease-[var(--ease-silk)] group-hover:tracking-[0.04em] group-hover:text-bordeaux">
                     {c.name}
                   </h2>
-                  <p className="editorial mt-3 text-xl italic text-ink/60 md:text-2xl">{c.tagline}</p>
+                  <p className="editorial mt-3 text-xl italic text-ink/60 md:text-2xl">{c.tagline || c.description}</p>
                 </div>
                 <div className="relative hidden aspect-[4/5] w-full overflow-hidden md:col-span-2 md:block">
                   <Image src={c.image} alt={c.imageAlt} fill sizes="16vw" className="object-cover grayscale transition-[filter,transform] duration-1000 group-hover:scale-105 group-hover:grayscale-0" />
@@ -48,7 +48,7 @@ export default async function CollectionsPage() {
         })}
       </ol>
       <div className="gutter mx-auto max-w-[120rem] py-10">
-        <ConceptNote>Collection imagery: AI concept references — not final product</ConceptNote>
+        <ConceptNote>Concept references — not final product</ConceptNote>
       </div>
     </div>
   );

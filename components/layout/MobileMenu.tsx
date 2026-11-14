@@ -55,9 +55,13 @@ export function MobileMenu({ open, onClose, onSearch }: { open: boolean; onClose
         ))}
       </nav>
       <div className="gutter flex items-center justify-between border-t border-paper/10 py-6">
-        <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="caps">
-          Instagram
-        </a>
+        {site.instagram ? (
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="caps">
+            Instagram
+          </a>
+        ) : (
+          <span className="caps text-paper/40">Instagram · soon</span>
+        )}
         <span className="eyebrow text-paper/50">Aix-en-Provence</span>
       </div>
     </div>

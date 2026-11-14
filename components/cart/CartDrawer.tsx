@@ -65,7 +65,7 @@ export function CartDrawer({ live }: { live: boolean }) {
 
         {!live && (
           <p className="border-b border-ink/10 bg-bone/60 px-6 py-3 text-xs leading-relaxed text-ink/70">
-            Preview — DAMI is not taking orders yet. Your bag is kept on this device so you are ready at launch.
+            Orders are not open yet.
           </p>
         )}
 
@@ -74,7 +74,7 @@ export function CartDrawer({ live }: { live: boolean }) {
             <div className="flex h-full flex-col items-start justify-center gap-6 py-16">
               <p className="editorial text-4xl">Your bag is empty.</p>
               <Link href="/shop" className="btn btn-dark" onClick={() => setOpen(false)}>
-                <span className="btn-label">Discover the pieces</span>
+                <span className="btn-label">Shop</span>
               </Link>
             </div>
           ) : (

@@ -88,7 +88,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({ lines: lines.map((l) => ({ variantId: l.variantId, quantity: l.quantity })) }),
       });
       if (res.status === 404 || res.status === 405) {
-        setCheckoutState({ status: "error", message: "Checkout opens at launch. DAMI pieces are still in sample development, so no orders are being taken yet." });
+        setCheckoutState({ status: "error", message: "Orders are not open yet." });
         return;
       }
       const data = (await res.json()) as { checkoutUrl?: string; message?: string };

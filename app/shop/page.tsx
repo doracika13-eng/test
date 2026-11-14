@@ -17,16 +17,14 @@ export default async function ShopPage() {
     <div className="gutter mx-auto max-w-[120rem] pt-32 md:pt-40">
       <header className="grid gap-8 pb-12 md:grid-cols-12 md:pb-16">
         <div className="md:col-span-8">
-          <p className="eyebrow mb-4 text-ink/50">The catalogue</p>
-          <SplitLines as="h1" className="display text-[clamp(3.6rem,11vw,11rem)]" lines={["The pieces"]} />
+          <p className="eyebrow mb-4 text-ink/50">DAMI</p>
+          <SplitLines as="h1" className="display text-[clamp(3.6rem,11vw,11rem)]" lines={["Shop"]} />
         </div>
         <div className="flex flex-col justify-end gap-4 md:col-span-4">
           <p className="text-sm leading-relaxed text-ink/70">
-            {commerceLive
-              ? "Every piece, in every colour we make it."
-              : "Five design families currently in sample development. Prices, sizes and release dates will be confirmed at launch."}
+            {commerceLive ? "" : "These are product development references, not necessarily independently approved retail products."}
           </p>
-          {!commerceLive && <ConceptNote>Imagery: AI concept references — not final product</ConceptNote>}
+          {!commerceLive && <ConceptNote>Concept references — not final product</ConceptNote>}
         </div>
       </header>
       <Suspense>

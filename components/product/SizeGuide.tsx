@@ -76,10 +76,7 @@ export function SizeGuide({ open, onClose, product, fit }: { open: boolean; onCl
           </>
         ) : (
           <div className="mt-10 border border-ink/15 bg-bone/50 p-6">
-            <p className="editorial text-2xl">Measurements coming soon.</p>
-            <p className="mt-3 text-sm leading-relaxed text-ink/70">
-              Garment measurements will be published here once the physical size-set samples have been measured and approved. Until then we don&apos;t publish provisional factory figures, so that what you read is what you receive.
-            </p>
+            <p className="text-sm leading-relaxed text-ink/70">Measurements will be published after the physical samples have been approved.</p>
           </div>
         )}
       </div>

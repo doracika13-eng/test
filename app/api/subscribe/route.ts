@@ -61,5 +61,5 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "We could not register your address right now. Please try again later." }, { status: 502 });
   }
 
-  return NextResponse.json({ message: "Early-access sign-up opens soon — our mailing list is not connected yet. Follow us on Instagram for news." }, { status: 503 });
+  return NextResponse.json({ message: "Early-access sign-up is not open yet." }, { status: 503 });
 }

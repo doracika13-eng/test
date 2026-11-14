@@ -6,12 +6,12 @@ import type { Collection } from "@/lib/commerce/types";
 
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-// Facts taken from the development documents (targets, not verified claims).
+// Figures from the DAMI brief (development specifications).
 const STATS = [
   { value: 5, label: "Design families", dec: 0 },
-  { value: 340, label: "GSM fleece target", dec: 0 },
-  { value: 6, label: "Sizes · XS–XXL", dec: 0 },
-  { value: 2, label: "Embroidered sleeves", dec: 0 },
+  { value: 340, label: "GSM main fleece", dec: 0 },
+  { value: 6, label: "Sizes XS–XXL", dec: 0 },
+  { value: 2, label: "Sleeve embroidery", dec: 0 },
 ];
 
 export function CollectionsPanel({ collections, counts }: { collections: Collection[]; counts: Record<string, number> }) {
@@ -68,14 +68,11 @@ export function CollectionsPanel({ collections, counts }: { collections: Collect
       <div className="mx-auto max-w-[120rem]">
         <div className="flex flex-wrap items-end justify-between gap-10">
           <div>
-            <span className="chip">The collections</span>
+            <span className="chip">Collections</span>
             <h2 id="panel-title" className="display mt-5 max-w-[680px] text-[clamp(36px,4.4vw,68px)] leading-[0.98]">
-              Five design families, <em className="editorial italic text-bordeaux">one material standard.</em>
+              Featured <em className="editorial italic text-bordeaux">Collection</em>
             </h2>
           </div>
-          <p className="max-w-[360px] text-[15px] leading-relaxed text-ink/65">
-            Signature, restraint and construction — three directions sharing one fleece, one fit and the same embroidered DAMI hand on both sleeves.
-          </p>
         </div>
 
         <div className="mt-[54px] grid gap-3.5 md:grid-cols-3">
@@ -104,13 +101,12 @@ export function CollectionsPanel({ collections, counts }: { collections: Collect
                   {counts[c.slug] ?? 0} {counts[c.slug] === 1 ? "piece" : "pieces"} · {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="display text-[clamp(30px,2.6vw,40px)] uppercase leading-[1]">{c.name}</h3>
-                <p className="editorial mt-1 text-lg italic text-champagne">{c.tagline}</p>
+                {c.tagline && <p className="editorial mt-1 text-lg italic text-champagne">{c.tagline}</p>}
                 <p className="max-h-0 overflow-hidden text-[13.5px] leading-relaxed text-paper/80 transition-[max-height,margin] duration-[600ms] group-hover:mt-2 group-hover:max-h-[100px]">{c.description}</p>
               </div>
             </Link>
           ))}
         </div>
-        <p className="eyebrow mt-3 !text-[0.55rem] text-ink/45">AI concept references — not final product</p>
 
         <div className="mt-[60px] grid grid-cols-4 border-t border-ink/10 max-md:grid-cols-2">
           {STATS.map((s) => (

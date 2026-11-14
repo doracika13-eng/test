@@ -70,7 +70,7 @@ export default async function ProductPage({ params }: Params) {
         <section aria-labelledby="related" className="border-t border-ink/15 py-24 md:py-32 mt-24">
           <div className="mb-12 flex items-end justify-between">
             <h2 id="related" className="display text-[clamp(2.6rem,6vw,5.5rem)]">
-              Also in <em className="editorial italic text-bordeaux">development</em>
+              <em className="editorial italic text-bordeaux">Collections</em>
             </h2>
             <Link href="/shop" className="caps link-u hidden sm:inline">All pieces</Link>
           </div>

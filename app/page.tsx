@@ -2,7 +2,6 @@ import { Story } from "@/components/hero/Story";
 import { CollectionsPanel } from "@/components/home/CollectionsPanel";
 import { Craftsmanship, DetailStrip, Spotlight, Statement } from "@/components/home/Sections";
 import { EarlyAccessForm } from "@/components/home/EarlyAccess";
-import { Instagram } from "@/components/home/Instagram";
 import { SplitLines } from "@/components/ui/SplitLines";
 import { getCollections, getProducts } from "@/lib/commerce";
 import { site } from "@/lib/site";
@@ -27,7 +26,6 @@ export default async function Home() {
     url: site.url,
     description: site.description,
     address: { "@type": "PostalAddress", addressLocality: "Aix-en-Provence", addressCountry: "FR" },
-    sameAs: [site.instagram],
   };
 
   return (
@@ -38,11 +36,11 @@ export default async function Home() {
       {spotlight && <Spotlight product={spotlight} />}
       <DetailStrip
         images={[
-          { src: "/images/products/cfm-t01-detail-print.jpg", alt: "Concept reference: DAMI Confirmed back print", label: "Confirmed — print" },
-          { src: "/images/products/ess-l01-detail-chevron.jpg", alt: "Concept reference: Lumen double chevron", label: "Lumen — chevron" },
-          { src: "/images/products/ess-e01-detail-sleeve.jpg", alt: "Concept reference: sleeve signature on Bordeaux", label: "Désir — sleeve" },
-          { src: "/images/products/ied-001-detail-rib.jpg", alt: "Concept reference: I Edition rib insert", label: "I Edition — rib insert" },
-          { src: "/images/products/cfm-k01-detail-chest.jpg", alt: "Concept reference: Confirmed chest print", label: "Bordeaux Kiss — chest" },
+          { src: "/images/products/cfm-t01-detail-print.jpg", alt: "DAMI Confirmed, back print", label: "CFM-T01 — DAMI Confirmed" },
+          { src: "/images/products/ess-l01-detail-chevron.jpg", alt: "LUMEN, double chevron", label: "ESS-L01 — LUMEN" },
+          { src: "/images/products/ess-e01-detail-sleeve.jpg", alt: "DÉSIR, sleeve embroidery", label: "ESS-E01 — DÉSIR" },
+          { src: "/images/products/ied-001-detail-rib.jpg", alt: "I Edition, rib insert", label: "IED-001 — I Edition" },
+          { src: "/images/products/cfm-k01-detail-chest.jpg", alt: "Bordeaux Kiss, Confirmed chest print", label: "CFM-K01 — Bordeaux Kiss" },
         ]}
       />
       <Craftsmanship />
@@ -51,19 +49,15 @@ export default async function Home() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
             <p className="eyebrow mb-4 text-ink/50" data-reveal>
-              05 — Early access
+              Newsletter / Early Access
             </p>
             <SplitLines as="h2" className="display text-[clamp(3rem,7.5vw,7.5rem)]" lines={[<span key="a" id="ea-title">Be first to</span>, <em key="b" className="editorial italic text-bordeaux">discover DAMI.</em>]} />
           </div>
           <div className="md:col-span-5 md:col-start-8 md:pt-16" data-reveal>
-            <p className="mb-10 max-w-md text-sm leading-relaxed text-ink/70">
-              Launch dates, first releases and private previews — sent sparingly, only to those who ask.
-            </p>
             <EarlyAccessForm />
           </div>
         </div>
       </section>
-      <Instagram />
     </>
   );
 }

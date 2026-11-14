@@ -34,7 +34,7 @@ const pages: Record<string, { title: string; intro: string; sections: [string, s
     sections: [
       ["Shipping", "Destinations, carriers, rates and delivery times will be published here at launch."],
       ["Returns", "Return and exchange conditions will be published at launch. For EU customers, the statutory 14-day right of withdrawal for online purchases will apply."],
-      ["Questions", "Until then, follow DAMI on Instagram or join the early-access list for launch details."],
+      ["Questions", "Until then, join the early-access list for launch details."],
     ],
   },
 };

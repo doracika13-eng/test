@@ -9,7 +9,7 @@ export function ConceptNote({ className = "", tone = "dark", children }: Props) 
       } ${className}`}
     >
       <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" aria-hidden />
-      {children ?? "AI concept reference — not final product"}
+      {children ?? "Concept reference — not final product"}
     </span>
   );
 }
