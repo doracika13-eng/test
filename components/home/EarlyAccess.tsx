@@ -23,6 +23,8 @@ export function EarlyAccessForm({ tone = "dark" }: { tone?: "dark" | "light" }) 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, consent, company: hp }),
       });
+      if (res.status === 404 || res.status === 405)
+        return setState({ status: "unavailable", message: "Early-access sign-up opens soon — our mailing list is not connected yet. Follow us on Instagram for news." });
       const data = (await res.json()) as { message?: string };
       if (res.ok) setState({ status: "success", message: data.message });
       else if (res.status === 503) setState({ status: "unavailable", message: data.message });

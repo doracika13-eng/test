@@ -2,14 +2,15 @@
   "name": "dami-web",
   "version": "0.1.0",
   "private": true,
-  "description": "DAMI — Aix-en-Provence. Brand experience and commerce front-end.",
+  "description": "DAMI \u2014 Aix-en-Provence. Brand experience and commerce front-end.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "images": "python3 scripts/extract_references.py"
+    "images": "python3 scripts/extract_references.py",
+    "build:static": "node scripts/build-static.mjs"
   },
   "engines": {
     "node": ">=20"

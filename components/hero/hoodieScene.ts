@@ -463,6 +463,8 @@ export function createHoodieScene(canvas: HTMLCanvasElement, opts: Options) {
     state.camDistTarget = state.view === "detail" ? (portrait ? 4.2 : 3.4) : portrait ? 8.2 : 6.4;
     // Wide screens: shift the garment right of centre, leaving room for the headline.
     if (w >= 1024) camera.setViewOffset(w, h, -w * 0.09, 0, w, h);
+    // Portrait (phones): lift the garment into the upper half, above the headline.
+    else if (portrait) camera.setViewOffset(w, h, 0, h * 0.2, w, h);
     else camera.clearViewOffset();
     camera.updateProjectionMatrix();
   };

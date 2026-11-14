@@ -87,6 +87,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lines: lines.map((l) => ({ variantId: l.variantId, quantity: l.quantity })) }),
       });
+      if (res.status === 404 || res.status === 405) {
+        setCheckoutState({ status: "error", message: "Checkout opens at launch. DAMI pieces are still in sample development, so no orders are being taken yet." });
+        return;
+      }
       const data = (await res.json()) as { checkoutUrl?: string; message?: string };
       if (res.ok && data.checkoutUrl) {
         window.location.assign(data.checkoutUrl);

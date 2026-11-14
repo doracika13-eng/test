@@ -123,7 +123,7 @@ export function Hero() {
       {/* Stage: 3D canvas or editorial fallback */}
       <div data-hero-stage className="absolute inset-0 z-[1]">
         {show3d && (
-          <div aria-hidden className="absolute left-1/2 top-[11%] h-[74%] w-[min(30rem,74vw)] -translate-x-1/2 lg:left-[59%]">
+          <div aria-hidden className="absolute left-1/2 top-[9%] h-[48%] w-[min(30rem,74vw)] -translate-x-1/2 md:top-[11%] md:h-[74%] lg:left-[59%]">
             <div className="absolute inset-0 rounded-t-full border border-paper/[0.07] bg-[radial-gradient(ellipse_at_50%_38%,rgba(216,199,168,0.20),rgba(88,20,34,0.10)_45%,rgba(17,17,17,0)_75%)]" />
             <div className="absolute inset-x-[7%] bottom-0 top-[5%] rounded-t-full border border-paper/[0.04]" />
           </div>
@@ -154,20 +154,23 @@ export function Hero() {
         )}
       </div>
 
+      {/* Legibility veil under the copy on small screens */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[55%] bg-gradient-to-t from-ink via-ink/85 to-transparent md:hidden" />
+
       {/* Copy */}
       <div className="pointer-events-none relative z-10 flex h-full flex-col justify-end">
-        <div className="gutter mx-auto grid w-full max-w-[120rem] items-end gap-8 pb-10 md:grid-cols-12 md:pb-12">
+        <div className="gutter mx-auto grid w-full max-w-[120rem] items-end gap-5 pb-8 md:grid-cols-12 md:gap-8 md:pb-12">
           <div data-hero-copy className="pointer-events-auto md:col-span-6 lg:col-span-5">
             <p data-hero-in className="eyebrow mb-5 text-champagne">
-              Aix-en-Provence — First collection in development
+              Aix-en-Provence<span className="hidden sm:inline"> — First collection in development</span>
             </p>
             <h1 data-hero-in className="editorial text-[clamp(2.6rem,6.2vw,5.6rem)] leading-[0.95]">
               Beyond the <em className="italic text-champagne">ordinary.</em>
             </h1>
-            <p data-hero-in className="mt-5 max-w-sm text-sm leading-relaxed text-paper/70">
+            <p data-hero-in className="mt-5 hidden max-w-sm text-sm leading-relaxed text-paper/70 sm:block">
               Luxury aesthetics, streetwear culture and accessible pricing — designed as one language.
             </p>
-            <div data-hero-in className="mt-8 flex flex-wrap items-center gap-4">
+            <div data-hero-in className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
               <Link href="/collections" className="btn btn-light" data-cursor="Enter">
                 <span className="btn-label">Explore the collection</span>
                 <Arrow className="relative" />

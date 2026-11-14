@@ -11,3 +11,4 @@ npm-debug.log*
 /test-results
 /scratch
 .netlify
+.api-parked
