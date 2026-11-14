@@ -1,7 +1,6 @@
 import { Story } from "@/components/hero/Story";
-import { Runway } from "@/components/runway/Runway";
-import { RUNWAY } from "@/content/runway";
-import { Craftsmanship, Statement } from "@/components/home/Sections";
+import { Cinema } from "@/components/home/Cinema";
+import { Statement } from "@/components/home/Sections";
 import { EarlyAccessForm } from "@/components/home/EarlyAccess";
 import { SplitLines } from "@/components/ui/SplitLines";
 import { getProducts } from "@/lib/commerce";
@@ -31,8 +30,7 @@ export default async function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Story tunnel={tunnel} />
-      <Runway looks={RUNWAY} products={products} />
-      <Craftsmanship />
+      <Cinema />
       <Statement />
       <section aria-labelledby="ea-title" className="gutter relative mx-auto max-w-[120rem] py-28 md:py-44">
         <div className="grid gap-12 md:grid-cols-12">

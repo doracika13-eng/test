@@ -27,8 +27,11 @@ export function Header({ searchIndex }: { searchIndex: SearchItem[] }) {
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 40);
-      const story = document.getElementById("story");
-      setInStory(!!story && story.getBoundingClientRect().bottom > 80);
+      const dark = Array.from(document.querySelectorAll<HTMLElement>("#story, [data-header-dark]")).some((el) => {
+        const r = el.getBoundingClientRect();
+        return r.top <= 60 && r.bottom > 60;
+      });
+      setInStory(dark);
       setHidden(y > 400 && y > last + 4 ? true : y < last - 4 ? false : (h) => h);
       last = y;
     };
